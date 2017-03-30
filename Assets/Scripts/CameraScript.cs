@@ -9,9 +9,14 @@ public class CameraScript : MonoBehaviour {
     public GameObject cameraPlane;
     public GameObject cameraParent = null;
     public Button fireButton;
+    public Button pauseButton;
+    public string mainMenu;
+    public GameObject pauseMenu;
+    private WebCamTexture camTexture;
 
     // Use this for initialization
     void Start() {
+        
 
         ////check to see if using a mobile platform
         if (Application.isMobilePlatform)
@@ -28,16 +33,17 @@ public class CameraScript : MonoBehaviour {
 
         //create a new web cam texture and assign the camera plane its texture
         //This takes the information from the camera and attaches that to the plabe
-        WebCamTexture camTexture = new WebCamTexture();
+        camTexture = new WebCamTexture();
         cameraPlane.GetComponent<MeshRenderer>().material.mainTexture = camTexture;
         camTexture.Play();
 
-        //Event listener for button
+        //Event listener for buttons
         fireButton.onClick.AddListener(OnPressed);
+        pauseButton.onClick.AddListener(OnPause);
+
     }//start
 
     void OnPressed() {
-
 
         //create an instance of a new laser
         GameObject laser = Instantiate(Resources.Load("laser", typeof(GameObject))) as GameObject;
@@ -56,6 +62,22 @@ public class CameraScript : MonoBehaviour {
 
         
     }//button pressed
+
+    public void OnPause(){                                              // allow the user to pause their game
+        pauseMenu.SetActive(true);                                      // opens the pause screen
+        Time.timeScale = 0f;                                            //sets the timescale to 0 pausing everything
+    }
+
+    public void Resume(){                                               // allows the user to resume their game
+        pauseMenu.SetActive(false);                                     // closes the pause screen
+        Time.timeScale = 1f;                                            // set the timescale to 1 unpausing everything
+    }
+
+    public void Quit(){                                                 // allows the user to return to the main menu
+        Application.LoadLevel(mainMenu);                                // load a game scene
+        Time.timeScale = 1f;                                            // set the timescale to 1 unpausing everything
+        camTexture.Stop();                                              // stops the camera
+    }
 
     // Update is called once per frame
     void Update () {

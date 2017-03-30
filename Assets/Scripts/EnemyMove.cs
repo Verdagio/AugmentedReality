@@ -32,7 +32,7 @@ public class EnemyMove : MonoBehaviour {
 
         colBox.GetComponent<AudioSource>().Play();              //play a sound so the player knows they have been hit
 
-        player.setHealth(player.getHealth() - 5f);              //set the players health.
+       // player.setHealth(player.getHealth() - 5f);              //set the players health.
 
     }//on collision
 }
