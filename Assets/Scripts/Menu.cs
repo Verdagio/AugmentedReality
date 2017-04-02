@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour {
 
-    public string startLevel;
 
     public void NewGame()
     {
-        Application.LoadLevel(startLevel);
+        SceneManager.LoadScene(1);
     }
 
 
