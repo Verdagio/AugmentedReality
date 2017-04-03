@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* In the spawner class we handle spawning enemy gameobjects
+ * The enemies will be spawned at random spawn points
+ * They will also spawn random enemy types.
+ */
 public class Spawner : MonoBehaviour {
 
 

@@ -4,14 +4,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/* In the camera script we deal with the following
+ * Taking the information stream from the device's camera
+ * & displaying this onto a plane.
+ * We also handle the logic relating to the device's gyroscope
+ * We also handle the pause menu logic 
+ */ 
 public class CameraScript : MonoBehaviour {
 
     // variables will be shown and editable in inspector
     public GameObject cameraPlane;
     public GameObject cameraParent = null;
-    public Button fireButton;
     public Button pauseButton;
     public GameObject pauseMenu;
+
+    // audio stuff
+    public GameObject [] objs;
+    public Text sfxText;
+    public Text mText;
+
     //hidden
     private WebCamTexture camTexture;
 
@@ -20,10 +31,9 @@ public class CameraScript : MonoBehaviour {
         
         // allows to look around in a natural way
         cameraParent = new GameObject("cameraParent");
-        cameraParent.transform.position = this.transform.position; // set the parents position to the camera
+        cameraParent.transform.position = this.transform.position;      // set the parents position to the camera
         this.transform.parent = cameraParent.transform;
         cameraParent.transform.Rotate(Vector3.right, 90);
-
 
         //if the device has a gyroscope in it use this will 
         Input.gyro.enabled = true;
@@ -34,28 +44,10 @@ public class CameraScript : MonoBehaviour {
         cameraPlane.GetComponent<MeshRenderer>().material.mainTexture = camTexture;
         camTexture.Play();
 
-        //Event listener for buttons
-        fireButton.onClick.AddListener(OnPressed);
+        //Event listener for the pause button   
         pauseButton.onClick.AddListener(OnPause);
 
     }//start
-
-    void OnPressed() {
-
-        //create an instance of a new laser
-        GameObject laser = Instantiate(Resources.Load("laser", typeof(GameObject))) as GameObject;
-
-        //play a sound when fired
-        GetComponent<AudioSource>().Play();
-
-        Rigidbody rigid = laser.GetComponent<Rigidbody>();              //add a collision box to laser
-        laser.transform.rotation = Camera.main.transform.rotation;      //set the rotation of the laser
-        laser.transform.position = Camera.main.transform.position;      //set the position of the laser
-        rigid.AddForce(Camera.main.transform.forward * 666f);           //set the force of the laser moving forward
-
-        //Destroy the laser after a few seconds to free up memory
-        Destroy(laser, 1.5f); 
-    }//button pressed
 
     public void OnPause(){                                              // allow the user to pause their game
         pauseMenu.SetActive(true);                                      // opens the pause screen
@@ -72,6 +64,32 @@ public class CameraScript : MonoBehaviour {
         Time.timeScale = 1f;                                            // set the timescale to 1 unpausing everything
         camTexture.Stop();                                              // stops the camera
     }//quit
+
+    public void Mute() {
+
+        AudioSource tmp = Camera.main.GetComponent<AudioSource>();
+        if (tmp.mute) {
+            tmp.mute = false;
+            mText.text = "ON";
+        } else {
+            tmp.mute = true;
+            mText.text = "OFF";
+        }// if else if
+    }// mute
+
+    public void MuteSfx() {
+
+        for(int i = 0; i < objs.Length; i++) {
+            AudioSource tmp = objs[i].GetComponent<AudioSource>();
+            if (tmp.mute) {
+                tmp.mute = false;
+                sfxText.text = "ON";
+            } else {
+                tmp.mute = true;
+                sfxText.text = "OFF";
+            }// mute / un mute lasers
+        }//for
+    }//sfx
 
     // Update is called once per frame
     void Update () {
