@@ -42,7 +42,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(health > 0){
+        if(health > 0 && Time.timeScale == 1){                                  // make sure the player is alive and the game is not paused
             score += .01f;                                                      // update the score
         }// if the player is alive
 
