@@ -66,7 +66,7 @@ public class Player : MonoBehaviour {
             //check to see if the high score has been beaten
             if(highScore < score) {
                 PlayerPrefs.SetInt("HighScore", (int) score);                   // set the new high score
-                PlayerPrefs.Save();                                             // save to memory             
+                PlayerPrefs.Save();                                             // save to local storage
             }//inner if
 
             finalHiScore.text = "High score: " + PlayerPrefs.GetInt("HighScore", 0).ToString();
