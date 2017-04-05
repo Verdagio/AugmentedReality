@@ -36,3 +36,4 @@ Assets/Resources/StandardAssets/*
 Assets/Resources/AsteroidPack/*
 Assets/Resources/Audio/*.wav
 Assets/Resources/Audio/*.mp3
+Assets/*.pfx
