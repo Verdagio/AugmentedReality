@@ -1,10 +1,58 @@
-# AugmentedReality
-Under grad project using Unity 3d Engine, and C# to build a augmented reality application
+# Augmented Reality (ARena)
+
+### Daniel Verdejo
+3rd Year Under grad project using Unity 3d Engine, and C# to build a markerless augmented reality application
 
 ## Project summary
 
-In this project I hope to build a markerless augmented reality project using C#, and the Unity 3d Engine. The project will use the 
-default camera of a device to augment what is displayed on screen. I will also use the devices gyroscope, & audio output devices for
-rotational & sound.
+In this project I have built a markerless augmented reality application that uses the devices camera, gyroscope, speaker, & local storage. To build this application I used the Unity 3d Engine 5.5, & Visual Studio 2015. In preparation for this project I had researched multiple API's related to Augmented Reality such as Vuforia, but in the end decided to build the application without using these. The idea of the application is simple enough, the user must survive for as long as possible in their "space ship" destroying asteriods & UFOS that are trying to destroy the player. 
 
-More Information coming soon.
+###### Supported Platforms
+
+1. Android (6.0 Marshmallow or greater)
+2. Windows 10 mobile devices. 
+3. The application will need minor additions, & adjustments in order to run on iOS devices.
+
+### Hardware Requirements
+
+In order to get the best experience from this application the device best suited to play on is a smartphone. The device must have the following:
+1. A Camera
+2. A Gyroscope
+3. An audio output device ( speaker / headphones )
+4. 135MB Storage
+
+### How to play
+
+Upon launch the application on a device such as a smartphone, the user will be presented a menu which will give the option to Play or Quit.
+
+![Menu](http://imgur.com/XQntvJi)
+
+Once the user choses play they are then presented with the main scene. From here the user will be able to play the game. The objective of the game is to survive for as long as possible, building up a highscore until their health has depleted. The user must manage their ammo as the reload will take 3 seconds leaving the user vunerable to damage. In this scene there are multiple UI components overlayed over information taken in from the camera.
+The UI consists of:
+
+1. The ship
+2. Fire Button
+2. Informational (eg. ammo, health, etc.)
+4. Pause button
+
+![Main1](http://imgur.com/pgnoyVb)
+
+Fire Button activated
+
+![Main2](http://imgur.com/lQMnviN)
+
+If the player needs to take a short break they can pause the game.
+
+![Paused](http://imgur.com/gP3lF05)
+
+Upon death the player will be presented with the Game over screen
+
+![GameOver](http://imgur.com/advh2Z7)
+
+## Conclusion
+
+Over all the development of this application went smooth. There is a lot of helpful documentation on the Unity 3d which I researched before, & during development. I really enjoyed building this application and plan to build a similar larger application which will expand upon the idea that I started here.
+
+### Reference
+
+[Unity Documentation](https://docs.unity3d.com/ScriptReference/)
